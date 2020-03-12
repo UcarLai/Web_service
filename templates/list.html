@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>List</title>
+  </head>
+
+  <body>
+    <a href="/">Back to Home Page</a>
+    <h1>List</h1>
+    
+      <form action="/list/" method="POST">
+      {% csrf_token %}
+
+      <table border="1">
+
+      <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Semester</th>
+      <th>Taught by</th>
+      </tr>
+
+      {% for module in module_list %}
+      <tr>
+      <td>{{ module.module_code }}</td>
+      <td>{{ module.module_name }}</td>
+      <td>{{ module.module_year }}</td>
+      <td>{{ module.module_semester }}</td>
+
+        <td>
+          {% for professor in module.module_taughtby.all %}
+          <p>{{ professor.professor_id}}, {{ professor.professor_name }}</p>
+          {% endfor %}
+        </td>
+
+      </tr>
+      {% endfor %}
+
+      </table>
+
+    </form>
+  </body>
+
+</html>

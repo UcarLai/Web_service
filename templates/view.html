@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>View</title>
+  </head>
+
+  <body>
+    <a href="/">Back to Home Page</a>
+    <h1>View</h1>
+    
+      <form action="/view/" method="POST">
+      {% csrf_token %}
+
+      {% for rate in rate_list %}
+      <p>The rating of Professor {{ rate.rate_professor.professor_name }}({{ rate.rate_professor.professor_id }}) is {{ rate.rate_score }}</p>
+      {% endfor %}
+
+    </form>
+  </body>
+
+</html>
